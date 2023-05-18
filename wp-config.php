@@ -37,7 +37,12 @@ switch ($_SERVER['HTTP_HOST'])
 		break;
 		
 	default :
-	
+		define( 'DB_NAME', 'vintagememorabilia_db' );
+		define( 'DB_USER', 'root' );
+		define( 'DB_PASSWORD', '' );
+		define( 'DB_HOST', 'localhost' );
+		
+		break;
 	
 }	
 

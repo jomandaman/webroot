@@ -3,8 +3,6 @@
 * General WP settings/configs
 */
 
-
-
 // Custom WordPress Login Logo
 add_action( 'login_head', 'custom_login_logo' );
 function custom_login_logo() {
@@ -42,6 +40,21 @@ add_action( 'admin_menu', 'remove_menus' );
 
 /* Add Menus support */
 add_theme_support( 'menus' );
+
+function register_my_menu() {
+	register_nav_menu('header-menu',__( 'Header Menu' ));
+  }
+add_action( 'init', 'register_my_menu' );
+
+class My_Walker_Nav_Menu extends Walker_Nav_Menu {
+    function start_el(&$output, $item, $depth=0, $args=array(), $id = 0) {
+        $url = $item->url;
+        $name = $item->title;
+        // Class for li and a are separated by a space
+        $output .= "<li class=\"\"><a href=\"$url\">$name</a></li>";
+    }
+}
+
 
 /* Add Post Thumbnail support */
 add_theme_support( 'post-thumbnails', array( 'post', 'item') );

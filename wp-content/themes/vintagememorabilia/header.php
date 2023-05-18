@@ -115,36 +115,14 @@ if (is_front_page()) {
         </div>
         <div class="navbar-collapse collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li class="">
-              <a href="/vintagememorabilia/">
-                Home
-              </a>
-            </li>
-            <li class=""> <!-- Had 'colorSwitch border active' as class for active, need to figure out -->
-              <a href="/vintagememorabilia/inventory/">
-                Inventory
-              </a>
-            </li>
-            <li class="">
-              <a href="/vintagememorabilia/gallery/">
-                Gallery
-              </a>
-            </li>
-            <li class="">
-              <a href="/vintagememorabilia/blog/">
-                Curiosities
-              </a>
-            </li>
-            <li class="">
-              <a href="/vintagememorabilia/about/">
-                About
-              </a>
-            </li>
-            <li class="">
-              <a href="/vintagememorabilia/contact/">
-                Contact
-              </a>
-            </li>
+            <?php 
+              wp_nav_menu( array( 
+                  'theme_location' => 'header-menu', 
+                  'container_class' => 'nav navbar-nav',
+                  'walker' => new My_Walker_Nav_Menu()
+              ) ); 
+            ?>
+            <!-- Had 'colorSwitch border active' as class for active, need to figure out  -->
           </ul>
         </div>
       </div>
