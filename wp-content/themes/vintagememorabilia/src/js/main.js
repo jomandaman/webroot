@@ -393,12 +393,12 @@ var VMSite = {
 	home: {
 		init: function() {
 			VMSite.masterslider.init();
-			$('#VMSite')
-				.on('click','.ms-showcase1 .ms-slide-info .ms-info',function(e){
-					e.preventDefault();
-					window.location = $(this).data('url');
-				});
-			$.get(vmSiteDir+'incs/ajaxCalls_v2dynamic.cfm?setCat=1'+VMSite.params.ajaxNoCache,function(data){ });
+			// $('#VMSite')
+			// 	.on('click','.ms-showcase1 .ms-slide-info .ms-info',function(e){
+			// 		e.preventDefault();
+			// 		window.location = $(this).data('url');
+			// 	});
+			// $.get(vmSiteDir+'incs/ajaxCalls_v2dynamic.cfm?setCat=1'+VMSite.params.ajaxNoCache,function(data){ });
 		}
 	},
 	inventory: {

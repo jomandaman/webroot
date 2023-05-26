@@ -43,15 +43,16 @@ add_theme_support( 'menus' );
 
 function register_my_menu() {
 	register_nav_menu('header-menu',__( 'Header Menu' ));
-  }
+}
 add_action( 'init', 'register_my_menu' );
 
 class My_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_el(&$output, $item, $depth=0, $args=array(), $id = 0) {
+		error_log("start_el called for menu item " . $item->title);
         $url = $item->url;
         $name = $item->title;
         // Class for li and a are separated by a space
-        $output .= "<li class=\"\"><a href=\"$url\">$name</a></li>";
+        $output .= "<li class=\"hmmmmmm\"><a href=\"$url\">$name</a></li>";
     }
 }
 

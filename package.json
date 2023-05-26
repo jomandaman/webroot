@@ -8,7 +8,7 @@
 	"license": "ISC",
 	"scripts": {
 		"build": "webpack --config ./wp-content/themes/vintagememorabilia/webpack.config.js --mode production",
-		"watch": "webpack --watch --mode production"
+		"watch": "webpack --config ./wp-content/themes/vintagememorabilia/webpack.config.js --watch --mode production"
 	},
 	"dependencies": {
 		"@fancyapps/ui": "^5.0.15",

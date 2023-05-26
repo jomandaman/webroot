@@ -117,10 +117,11 @@ if (is_front_page()) {
           <ul class="nav navbar-nav">
             <?php 
               wp_nav_menu( array( 
-                  'theme_location' => 'header-menu', 
-                  'container_class' => 'nav navbar-nav',
-                  'walker' => new My_Walker_Nav_Menu()
-              ) ); 
+                'theme_location' => 'header-menu', 
+                'container' => false,
+                'items_wrap' => '<ul class="nav navbar-nav">%3$s</ul>',
+                'walker' => new My_Walker_Nav_Menu()
+            ) );            
             ?>
             <!-- Had 'colorSwitch border active' as class for active, need to figure out  -->
           </ul>

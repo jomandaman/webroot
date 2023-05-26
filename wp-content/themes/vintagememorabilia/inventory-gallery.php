@@ -19,7 +19,7 @@ Template Name: Inventory and Gallery
                     if ($is_inventory_page) {
                         echo "<h3 class='pagetitle'>INVENTORY BY CATEGORY &amp; NAME</h3>";
                     } elseif ($is_gallery_page) {
-                        echo "<h3 class='pagetitle'>GALLERY</h3>";
+                        echo "<h3 class='pagetitle'>GALLERY Testing</h3>";
                     }
 
                     $categories = get_terms(array(
@@ -54,65 +54,87 @@ Template Name: Inventory and Gallery
                                         <div class='category-links-columns'>";
 
                         if ($is_gallery_page) {
-                            $term = get_queried_object();
-                            echo "Retrieved term: <pre>" . print_r($term, true) . "</pre><br>";
+                            // $term = get_queried_object();
+                            // echo "Retrieved term: <pre>" . print_r($term, true) . "</pre><br>";
+                            // $args = array(
+                            //     'post_type' => 'item',
+                            //     'posts_per_page' => -1,
+                            //     'meta_query' => array(
+                            //         array(
+                            //             'key' => 'sold',
+                            //             'value' => '1',
+                            //             'compare' => '!='
+                            //         )
+                            //     ),
+                            //     'tax_query' => array(
+                            //         array(
+                            //             'taxonomy' => 'item_category',
+                            //             'field' => 'term_id',
+                            //             'terms' => $term->term_id,
+                            //         ),
+                            //     ),
+                            // );
+                            // echo "Query arguments: <pre>" . print_r($args, true) . "</pre><br>";
+                            // $gallery_query = new WP_Query($args);
+                            // echo "Found items: <pre>" . print_r($gallery_query->posts, true) . "</pre><br>";
                             $args = array(
                                 'post_type' => 'item',
                                 'posts_per_page' => -1,
-                                'meta_query' => array(
-                                    array(
-                                        'key' => 'sold',
-                                        'value' => 1,
-                                        'compare' => '!='
-                                    )
-                                ),
                                 'tax_query' => array(
                                     array(
-                                        'taxonomy' => 'category',
-                                        'field' => 'term_id',
-                                        'terms' => $term->term_id,
+                                        'taxonomy' => 'item_category',
+                                        'field' => 'slug',
+                                        'terms' => $category_slug,
                                     ),
                                 ),
                             );
-                            echo "Query arguments: <pre>" . print_r($args, true) . "</pre><br>";
-                            $gallery_query = new WP_Query($args);
-                            echo "Found items: <pre>" . print_r($gallery_query->posts, true) . "</pre><br>";
+                            $items = new WP_Query($args);
+    
+                            // Display every person
+                            if ($items->have_posts()) {
+                                while ($items->have_posts()) {
+                                    $items->the_post();
+                                    echo "Found items: <pre>" . print_r($items->posts, true) . "</pre><br>";
 
+                                }
+                            } else {
+                                echo "<p>No items found in this category.</p>";
+                            }  
 
                             // Display every item
-                            if ($gallery_query->have_posts()) {
-                                echo "<div class='category-links clearfix'>";
-                                while ($gallery_query->have_posts()) {
-                                    $gallery_query->the_post();
-                                    $item_title = get_the_title();
-                                    $item_year = get_field('year');
-                                    $item_permalink = get_permalink();
-                                    $item_image_url = get_the_post_thumbnail_url(null, 'large');
-                                    $item_description = get_the_excerpt();
-                                    $item_price = get_field('price');
-                                    $is_sold = get_field('sold');
+                            // if ($gallery_query->have_posts()) {
+                            //     echo "<div class='category-links clearfix'>";
+                            //     while ($gallery_query->have_posts()) {
+                            //         $gallery_query->the_post();
+                            //         $item_title = get_the_title();
+                            //         $item_year = get_field('year');
+                            //         $item_permalink = get_permalink();
+                            //         $item_image_url = get_the_post_thumbnail_url(null, 'large');
+                            //         $item_description = get_the_excerpt();
+                            //         $item_price = get_field('price');
+                            //         $is_sold = get_field('sold');
                             
-                                    echo "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-3'>
-                                        <a href='{$item_permalink}' class='category-links-item'>
-                                            <span class='category-links-img' style='background-image:url({$item_image_url});'>
-                                            </span>
-                                            <span class='category-links-caption'>
-                                                <strong>{$item_title}<span> ~ {$item_year}</span></strong>
-                                                {$item_description}
-                                                <br><br>";
-                                    if ($is_sold) {
-                                        echo "<span class='sold'>SOLD</span>";
-                                    } else {
-                                        echo "<span class='price'>{$item_price}</span>";
-                                    }
-                                    echo "</span>
-                                        </a>
-                                    </div>";
-                                }
-                                echo "</div>";
-                            } else {
-                                echo "<p>No unsold items found in this category.</p>";
-                            }
+                            //         echo "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-3'>
+                            //             <a href='{$item_permalink}' class='category-links-item'>
+                            //                 <span class='category-links-img' style='background-image:url({$item_image_url});'>
+                            //                 </span>
+                            //                 <span class='category-links-caption'>
+                            //                     <strong>{$item_title}<span> ~ {$item_year}</span></strong>
+                            //                     {$item_description}
+                            //                     <br><br>";
+                            //         if ($is_sold) {
+                            //             echo "<span class='sold'>SOLD</span>";
+                            //         } else {
+                            //             echo "<span class='price'>{$item_price}</span>";
+                            //         }
+                            //         echo "</span>
+                            //             </a>
+                            //         </div>";
+                            //     }
+                            //     echo "</div>";
+                            // } else {
+                            //     echo "<p>No unsold items found in this category.</p>";
+                            // }
 
                         } else { // assume inventory
                             $args = array(
@@ -170,9 +192,5 @@ Template Name: Inventory and Gallery
         </div>
     </div>
 </div>
-
-<script>
-    var itemsByCategories = <?php echo json_encode($items_by_categories); ?>;
-</script>
 
 <?php include 'footer.php'; ?>
