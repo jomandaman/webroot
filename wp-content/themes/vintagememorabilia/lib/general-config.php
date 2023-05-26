@@ -52,9 +52,24 @@ class My_Walker_Nav_Menu extends Walker_Nav_Menu {
         $url = $item->url;
         $name = $item->title;
         // Class for li and a are separated by a space
-        $output .= "<li class=\"hmmmmmm\"><a href=\"$url\">$name</a></li>";
+        $output .= "<li><a href=\"$url\">$name</a></li>";
     }
 }
+
+function post_sidebar() {
+    register_sidebar(
+        array (
+            'name' => __( 'Posts Sidebar', 'VintageMemorabilia' ),
+            'id' => 'posts-sidebar',
+            'description' => __( 'Posts Sidebar', 'VintageMemorabilia' ),
+            'before_widget' => '<div class="widget-content">',
+            'after_widget' => "</div>",
+            'before_title' => '<h5 class="widget-title">',
+            'after_title' => '</h5>',
+        )
+    );
+}
+add_action( 'widgets_init', 'post_sidebar' );
 
 
 /* Add Post Thumbnail support */
