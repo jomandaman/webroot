@@ -12,6 +12,7 @@ Template Name: Post
     <div class="col-xs-12 col-sm-12 maincol">
         <div class="maincolContent">
             <div class="row">
+            <?php while ( have_posts() ) : the_post(); ?>		
                 <div class="col-sm-8 col-md-9 col-lg-9">
                     <div class="pad content-left">
                         <h3><a href="<?php the_permalink() ?>" class="colorSwitch text bootinfo"><?php the_title() ?></a></h3>
@@ -113,6 +114,7 @@ Template Name: Post
                         <a href="https://www.vintagememorabilia.com/mcms_site/incs/rss.cfm?feed=blog" target="_blank"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a> -->
                     </div>
                 </div>
+            <?php endwhile;	?>	    
             </div>
         </div>
     </div>
