@@ -107,7 +107,7 @@ Template Name: Front Page
                                     $thumbnail_url = get_the_post_thumbnail_url($note->ID);
                                     echo "
                                         <a href='" . get_permalink($note->ID) . "' class='home-items'>
-                                            <img src='/vintagememorabilia/wp-content/themes/vintagememorabilia/images/pages/blank_900.png' class='img-responsive' border='0' style='background-image:url(" . $thumbnail_url . ");'>
+                                            <img src='" . get_template_directory_uri() . "/images/pages/blank_900.png' class='img-responsive' border='0' style='background-image:url(" . $thumbnail_url . ");'>
                                             <h5>$title</h5>
                                             <p>$author</p>
                                         </a>
