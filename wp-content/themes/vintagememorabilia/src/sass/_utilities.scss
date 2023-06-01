@@ -1,0 +1,249 @@
+// Utilites
+// @use "math";
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+.narrow-content {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.site-width {
+  width: 100%;
+  max-width: calc(1440px + ( #{var(--column-gap)} * 2) );
+  padding: 0 var(--column-gap);
+  margin: 0 auto;
+
+	&.site-width-narrow {
+		max-width: calc(1000px + ( #{var(--column-gap)} * 2) );
+	}
+	
+	&.site-width-full {
+		max-width: none;
+	}
+	
+	&.site-width-no-pad {
+		max-width: 1440px;
+		padding: 0;
+	}
+	
+	/*@media (max-width: $bp-mid-mid) {
+		padding-left: 5vw;
+		padding-right: 5vw;
+		
+		&.site-width-no-pad {
+			padding: 0;
+		}
+	}*/
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+.text-small {
+  font-size: 0.75rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.center-columns {
+  align-items: center;
+}
+
+.has-bottom-border-green {
+	border-bottom: 12px solid $green-dark;
+	padding-bottom: 2.8rem;
+	
+	@media (max-width: $bp-mid-mid) {
+		padding-bottom: 5vw;
+	}
+}
+
+.has-top-border-green {
+	border-top: 12px solid $green-dark;
+	padding-top: 2.3rem;
+	
+	@media (max-width: $bp-mid-mid) {
+		padding-top: 5vw;
+	}
+}
+
+.has-top-border-light-green {
+	border-top: 3px solid $green-light;
+	padding-top: 1.5rem;
+	margin: 3rem 0;
+}
+
+// Text column that doesn't go full width
+.has-narrow-wrap {
+	width: 85%;
+	
+	// When nested inside a wider column, to get it down to normal column width
+	
+	.flex-columns__column_wide & {
+		width: 76%;
+		
+		@media (max-width: $bp-large) {
+			width: 82%;
+		}
+		
+		@media (max-width: $bp-mid-mid) {
+			width: auto;
+		}
+	}
+}
+
+.has-full-width-image img {
+	img {
+		width: 100%;
+	}
+}
+
+// internal use margin / padding classes
+$space-amounts: (0, 1, 2, 3, 4, 5, 6, 7); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom);
+
+// Em spaces
+
+@each $space in $space-amounts {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {margin-#{$side}: #{$space}em !important;}
+    .p#{str-slice($side, 0, 1)}-#{$space} {padding-#{$side}: #{$space}em !important;}
+  }
+}
+
+// Rem spaces
+
+@each $space in $space-amounts {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}r-#{$space} {margin-#{$side}: #{$space}rem !important;}
+    .p#{str-slice($side, 0, 1)}r-#{$space} {padding-#{$side}: #{$space}rem !important;}
+  }
+}
+
+.ptr-3_5 {
+	padding-top: 3.5rem;
+}
+
+.mb-08 {
+	margin-bottom: 0.8em;
+}
+
+// Rem spaces that can scale responsively
+
+@each $space in $space-amounts {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}rs-#{$space} {margin-#{$side}: #{$space}rem !important;}
+    .p#{str-slice($side, 0, 1)}rs-#{$space} {padding-#{$side}: #{$space}rem !important;}
+  }
+}
+
+@media (max-width: $bp-mid-mid) {
+	.ptrs-3 {
+		padding-top: 5vw !important;
+	}
+	
+	.pbrs-3 {
+		padding-bottom: 5vw !important;
+	}
+	
+	.pbrs-5 {
+		padding-bottom: 10vw !important;
+	}
+	
+	.pbrs-6 {
+		padding-bottom: 12vw !important;
+	}
+	
+	.mbrs-5 {
+		margin-bottom: 7vw !important;
+	}
+	
+	.mtrs-5 {
+		margin-top: 7vw !important;
+	}
+}
+
+.left-indent {
+	padding-left: $left-indent;
+	
+	@media (max-width: $bp-mid-large) {
+		padding-left: $left-indent-small-1;
+	}
+}
+
+.variable-indent {
+	padding-left: $left-indent;
+	
+	@media (min-width: $bp-xx-large) {
+		&__zero-at-wide {
+			padding-left: 0;	
+		}
+	}
+	
+	@media (max-width: $bp-mid-large) {
+		padding-left: $left-indent-small-1;
+	}
+	
+	@media (max-width: $bp-mid-mid) {
+		padding-left: $left-indent-small-2;
+	}
+	
+	@media (max-width: $bp-mid-min) {
+		padding-left: 2rem;
+	}
+}
+
+
+
+// TODO - relocate
+
+ul.link-stack {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	
+	li {
+		margin-bottom: 4em;
+		
+		@media (max-width: $bp-small) {
+			margin-bottom: 3em;
+		}
+		
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.hidden {
+	display: none;
+}

@@ -15,4 +15,11 @@ include('lib/general-functions.php');
 // Styles/Scripts (CSS/JS)
 include('lib/styles-scripts.php');
 
+// Ajax handlers
+include('lib/ajax.php');
+
+// Item CPT API
+include('api/api.item.inc.php');
+
+
 ?>

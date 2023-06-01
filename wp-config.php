@@ -35,7 +35,31 @@ switch ($_SERVER['HTTP_HOST'])
 		define('DB_HOST', 'db-01.metricmedia.com');
 		
 		break;
+
+	case 'vintagememorabilia.cm':
+		define('DB_NAME', 'vintagememorabilia' );
+		define('DB_USER', 'root');
+		define('DB_PASSWORD', '1rootCanal');
+		define('DB_HOST', 'localhost');
 		
+		break;
+
+	case 'vintagememorabilia.mf':
+		define('DB_NAME', 'vintagememorabilia' );
+        define('DB_USER', 'root');
+        define('DB_PASSWORD', 'oprq99');
+        define('DB_HOST', 'localhost');
+
+		break;
+		
+	case 'vintagememorabilia.bob':
+		define('DB_NAME', 'vintagememorabilia' );
+		define('DB_USER', 'bob');
+		define('DB_PASSWORD', 'scooter1');
+		define('DB_HOST', 'localhost');
+
+		break;
+			
 	default :
 		define( 'DB_NAME', 'vintagememorabilia_db' );
 		define( 'DB_USER', 'root' );
