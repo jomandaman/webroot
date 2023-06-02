@@ -12,7 +12,7 @@ function custom_login_logo() {
 	width: 100%;
 	height: 81px;
 	background-image: url('<?php echo get_template_directory_uri(); ?>/images/logo.png');
-	background-size: cover;
+	background-size: contain;
 }
 </style>
 <?php
