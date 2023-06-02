@@ -1,9 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <?php include 'header.php'; ?>
 <?php $current_url = get_permalink(); ?>
-
-<!-- Facebook tracking code removed here-->
 
 <div class="row row-offcanvas row-offcanvas-right">
   <div class="col-xs-12 col-sm-12 maincol">

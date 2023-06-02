@@ -38,40 +38,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js" type="text/javascript"></script>
-    <!-- <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script> -->
-    <!-- <script type="text/javascript" src="/fancybox/jquery.easing-1.4.pack.js"></script> -->
-    <!-- <script type="text/javascript" src="/fancybox/jquery.mousewheel-3.0.4.pack.js"></script> -->
 
-    <!-- <script crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    <!-- <script crossorigin="anonymous" integrity="sha256-LOnFraxKlOhESwdU/dX+K0GArwymUDups0czPWLEg4E=" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script> -->
-
-    <!-- <script>
-        var device = VMSite.util.Device();
-        var mzOptions = {
-            zoomPosition: 'inner',
-            variableZoom: true,
-            textHoverZoomHint: 'Hover to magnify'
-        }; // { zoomMode:'magnifier', zoomWidth:500, zoomHeight:400, variableZoom:true, textHoverZoomHint:'Hover to magnify' };
-        mzOptions = (device.view.toLowerCase() === 'mobile') ? {
-            zoomPosition: 'inner',
-            variableZoom: true,
-            textHoverZoomHint: 'Hover'
-        } : mzOptions;
-        var mzMobileOptions = {
-            zoomMode: 'magnifier',
-            zoomWidth: 250,
-            zoomHeight: 250,
-            textTouchZoomHint: 'Magnify',
-            textClickZoomHint: 'Double tap to zoom',
-            textExpandHint: 'Tap to expand'
-        };
-    </script> -->
-    <!-- <script type="text/javascript">
-        var addthis_config = {
-            data_track_clickback: true
-        };
-    </script> -->
-    <!-- <script src="//s7.addthis.com/js/250/addthis_widget.js#pubid=vintagememorabilia" type="text/javascript"> -->
     </script>
     <?php wp_footer(); ?>
 
