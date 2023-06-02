@@ -148,4 +148,18 @@ function mm_disable_gutenberg( $can_edit, $post_type ) {
 }
 add_filter( 'gutenberg_can_edit_post_type', 'mm_disable_gutenberg', 10, 2 );
 add_filter( 'use_block_editor_for_post_type', 'mm_disable_gutenberg', 10, 2 );
+
+
+/* Menus: adding specific classes to top menu */
+function add_current_menu_class($classes, $item) {
+	// if viewing an "item" CPT, highlight Inventory page
+	if (is_singular('item')) { 
+        global $post;
+        if ($post->post_type === 'item') {
+            $classes[] = 'current-menu-item';
+        }
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_current_menu_class', 10, 2);
 ?>

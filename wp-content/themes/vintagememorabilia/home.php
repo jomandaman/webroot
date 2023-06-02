@@ -29,6 +29,8 @@ Template Name: Blog
                                 <p>&nbsp;</p>
                                 <hr>
                             <?php endwhile; ?>
+							
+							<?php include('inc/pagination.inc.php') ?>
                         <?php endif; ?>
                     </div>
                 </div>

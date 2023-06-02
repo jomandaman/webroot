@@ -55,11 +55,13 @@ if (is_front_page()) {
                   <img alt="Vintage Memorabilia - Fine Autographs Of Interest &amp; Distinction" src="<?php echo get_template_directory_uri() ?>/images/logo-only.png" />
                 </a>
               </span>
-              <input aria-label="Search" class="form-control" name="sitesearch" placeholder="Search" rel="sitesearch1" type="text" />
-              <span class="input-group-addon sitesearch-submit" rel="sitesearch1">
-                <i class="fa fa-search">
-                </i>
-              </span>
+			  <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+				  <input aria-label="Search" class="form-control" name="s" placeholder="Search" rel="sitesearch1" type="text" value="<?php the_search_query(); ?>" />
+			  </form>  
+			  <span class="input-group-addon sitesearch-submit" rel="sitesearch1">
+				<i class="fa fa-search">
+				</i>
+			  </span>			 
             </div>
           </div>
         </div>
@@ -75,11 +77,13 @@ if (is_front_page()) {
       </div>
       <div class="col-sm-4 hidden-xs">
         <div class="input-group nav-search">
-          <input aria-label="Search" class="form-control" name="sitesearch" placeholder="Search" rel="sitesearch2" type="text" />
-          <span class="input-group-addon sitesearch-submit" rel="sitesearch2">
-            <i class="fa fa-search">
-            </i>
-          </span>
+			<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+			  <input aria-label="Search" class="form-control" name="s" placeholder="Search" rel="sitesearch2" type="text" value="<?php the_search_query(); ?>" />			 
+			</form>   
+			  <span class="input-group-addon sitesearch-submit" rel="sitesearch2">
+				<i class="fa fa-search">
+				</i>
+			  </span>
         </div>
       </div>
     </div>
@@ -105,11 +109,13 @@ if (is_front_page()) {
           </button>
           <div class="navbar-brand visible-xs">
             <div class="input-group nav-search">
-              <input aria-label="Search" class="form-control" name="sitesearch" placeholder="Search" rel="sitesearch3" type="text" />
-              <span class="input-group-addon sitesearch-submit" rel="sitesearch3">
-                <i class="fa fa-search">
-                </i>
-              </span>
+			  <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+			    <input aria-label="Search" class="form-control" name="s" placeholder="Search" rel="sitesearch3" type="text" value="<?php the_search_query(); ?>" />
+			  </form>
+			  <span class="input-group-addon sitesearch-submit" rel="sitesearch3">
+				<i class="fa fa-search">
+				</i>
+			  </span>				  
             </div>
           </div>
         </div>

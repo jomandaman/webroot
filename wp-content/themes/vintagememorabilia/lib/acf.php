@@ -164,8 +164,8 @@ function custom_hide_acf_admin() {
     $site_url = get_bloginfo( 'url' );
  
     $protected_urls = array(
-        'https://walshconstruction.metricmedia.com',
-        'http://walshconstruction.metricmedia.com'
+        'https://vintagememorabilia.metricmedia.com',
+        'http://vintagememorabilia.metricmedia.com'
     );
 
     if ( in_array( $site_url, $protected_urls ) ) {

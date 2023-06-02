@@ -173,7 +173,7 @@ Template Name: Inventory and Gallery
                                             $last_name = get_field('last_name', 'person_' . $person->term_id);
                                             $display_name = $last_name . ', ' . $first_name;
                                             $item_link = get_permalink();
-                                            $person_link = get_term_link($person_terms[0], 'person');
+                                            $person_link = get_term_link($person);
                                             echo "<a href='{$person_link}'>{$display_name}</a>";
                                         }
                                     }
