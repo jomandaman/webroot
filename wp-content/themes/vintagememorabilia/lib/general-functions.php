@@ -61,15 +61,16 @@ function get_page_title_custom() {
  * Elementor Pro's custom query filter hook to include a meta_query
  * for 
  */
-add_action('elementor/query/my_custom_filter', function($query) {
-    $query->set('meta_query', [
-        [
-            'key' => 'field_648a2eb51eeb9', // replace with your ACF field key
-            'value' => '1', // 1 for true, 0 for false
-            'compare' => '=',
-        ]
-    ]);
+add_action('elementor/query/special_note', function($query) {  
+	$query->set('meta_query', [  
+	  [  
+		'meta_key' => 'special_note', 
+		'value' => '1', // 1 for true, 0 for false  
+		'compare' => '='  
+	  ]  
+	]);  
 });
+  
 
 
 /**

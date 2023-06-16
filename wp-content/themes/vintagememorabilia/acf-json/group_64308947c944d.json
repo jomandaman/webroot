@@ -26,6 +26,29 @@
             "multiple": 0
         },
         {
+            "key": "field_645368d63aebe",
+            "label": "Related Persons",
+            "name": "related_persons",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "person",
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "object",
+            "field_type": "multi_select",
+            "allow_null": 1,
+            "multiple": 0
+        },
+        {
             "key": "field_643089492bf8f",
             "label": "Year",
             "name": "year",
@@ -46,6 +69,46 @@
             "step": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_64418bdaa1196",
+            "label": "Item #",
+            "name": "itemNum",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_64426b1d3f55b",
+            "label": "Sold",
+            "name": "sold",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_643089672bf90",
@@ -98,69 +161,6 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_64418bdaa1196",
-            "label": "Item #",
-            "name": "itemNum",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_64426b1d3f55b",
-            "label": "Sold",
-            "name": "sold",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_645368d63aebe",
-            "label": "Related Persons",
-            "name": "related_persons",
-            "aria-label": "",
-            "type": "taxonomy",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "taxonomy": "person",
-            "add_term": 1,
-            "save_terms": 1,
-            "load_terms": 1,
-            "return_format": "object",
-            "field_type": "multi_select",
-            "allow_null": 1,
-            "multiple": 0
-        },
-        {
             "key": "field_648a2eb51eeb9",
             "label": "Special Note",
             "name": "special_note",
@@ -174,7 +174,27 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Select to display on homepage",
+            "message": "Select to display on homepage right sidebar",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_648c0b205fc21",
+            "label": "Featured Item",
+            "name": "featured_item",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Select to display in Carousel",
             "default_value": 0,
             "ui": 0,
             "ui_on_text": "",
@@ -199,5 +219,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1686894247
+    "modified": 1686899526
 }
