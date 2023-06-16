@@ -52,29 +52,7 @@ Template Name: Inventory and Gallery
                                         <div class='category-links-columns'>";
 
                         if ($is_gallery_page) {
-                            $args = array(
-                                'post_type' => 'item',
-                                'posts_per_page' => -1,
-                                'tax_query' => array(
-                                    array(
-                                        'taxonomy' => 'item_category',
-                                        'field' => 'slug',
-                                        'terms' => $category_slug,
-                                    ),
-                                ),
-                            );
-                            $items = new WP_Query($args);
-    
-                            // Display every person
-                            if ($items->have_posts()) {
-                                while ($items->have_posts()) {
-                                    $items->the_post();
-                                    echo "Found items: <pre>" . print_r($items->posts, true) . "</pre><br>";
-
-                                }
-                            } else {
-                                echo "<p>No items found in this category.</p>";
-                            }  
+                            // Loaded via js
 
                         } else { // assume inventory
                             $args = array(
@@ -93,6 +71,7 @@ Template Name: Inventory and Gallery
                             // Display every person
                             if ($items->have_posts()) {
                                 $displayed_persons = array();
+                                $person_list = array(); // Array to hold all persons for later sorting
                                 while ($items->have_posts()) {
                                     $items->the_post();
                                     $person_terms = get_the_terms(get_the_ID(), 'person');
@@ -111,16 +90,25 @@ Template Name: Inventory and Gallery
                                             $displayed_persons[] = $person->term_id;
                                             $first_name = get_field('first_name', 'person_' . $person->term_id);
                                             $last_name = get_field('last_name', 'person_' . $person->term_id);
-                                            $display_name = $last_name . ', ' . $first_name;
-                                            $item_link = get_permalink();
+                                            $display_name = $last_name ? $last_name . ', ' . $first_name : $first_name; // Check if last name is populated
                                             $person_link = get_term_link($person);
-                                            echo "<a href='{$person_link}'>{$display_name}</a>";
+                                            $person_list[] = array('display_name' => $display_name, 'person_link' => $person_link); // Add to list for sorting
                                         }
                                     }
                                 }
+                            
+                                // Sort the array by display_name
+                                usort($person_list, function($a, $b) {
+                                    return strcmp($a['display_name'], $b['display_name']); // Use strcmp for string comparison
+                                });
+                            
+                                // Now display the sorted list
+                                foreach ($person_list as $person) {
+                                    echo "<a href='{$person['person_link']}'>{$person['display_name']}</a>";
+                                }
                             } else {
                                 echo "<p>No items found in this category.</p>";
-                            }
+                            }                            
                         }
 
                         echo "      </div>

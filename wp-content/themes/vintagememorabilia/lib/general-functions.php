@@ -57,6 +57,53 @@ function get_page_title_custom() {
 	return $page_title;	
 }
 
+/**
+ * Elementor Pro's custom query filter hook to include a meta_query
+ * for 
+ */
+add_action('elementor/query/my_custom_filter', function($query) {
+    $query->set('meta_query', [
+        [
+            'key' => 'field_648a2eb51eeb9', // replace with your ACF field key
+            'value' => '1', // 1 for true, 0 for false
+            'compare' => '=',
+        ]
+    ]);
+});
+
+
+/**
+ * ACF Custom field for adding additional images to an Item's gallery
+ */
+add_action('pmxi_gallery_image', function($post_id, $attid, $image_filepath) {
+    error_log("pmxi_gallery_image action triggered for post $post_id, image $attid");
+}, 10, 3);
+
+add_action('pmxi_gallery_image', 'add_images_ids_to_meta', 20, 3);
+function add_images_ids_to_meta($post_id, $attid, $image_filepath) {
+    error_log("add_images_ids_to_meta called for post $post_id, image $attid");
+    
+    // Get the current value of the 'images' custom field
+    $current_images = get_post_meta($post_id, 'images', true);
+
+    // If it's not empty, make sure it's an array (it should be if it's an ACF image gallery field)
+    if (!empty($current_images)) {
+        if (!is_array($current_images)) {
+            $current_images = array($current_images);
+        }
+    } else {
+        // If it's empty, initialize it as an empty array
+        $current_images = array();
+    }
+
+    // Add the new image ID to the array
+    $current_images[] = $attid;
+
+    error_log("Updated 'images' custom field for post $post_id with value $current_images");
+
+    // Update the 'additional_images' custom field
+    update_post_meta($post_id, 'additional_images', $current_images);
+}
 
 
 function mm_get_image($image_field, $size = 'full', $icon = false, $attr = '') {

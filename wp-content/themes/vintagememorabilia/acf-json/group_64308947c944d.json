@@ -3,6 +3,29 @@
     "title": "Item Details",
     "fields": [
         {
+            "key": "field_648bf63fbd6fa",
+            "label": "Main Person",
+            "name": "main_person",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "person",
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "object",
+            "field_type": "select",
+            "allow_null": 0,
+            "multiple": 0
+        },
+        {
             "key": "field_643089492bf8f",
             "label": "Year",
             "name": "year",
@@ -130,12 +153,32 @@
             },
             "taxonomy": "person",
             "add_term": 1,
-            "save_terms": 0,
-            "load_terms": 0,
+            "save_terms": 1,
+            "load_terms": 1,
             "return_format": "object",
             "field_type": "multi_select",
-            "allow_null": 0,
+            "allow_null": 1,
             "multiple": 0
+        },
+        {
+            "key": "field_648a2eb51eeb9",
+            "label": "Special Note",
+            "name": "special_note",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Select to display on homepage",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -156,5 +199,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1685631665
+    "modified": 1686894247
 }

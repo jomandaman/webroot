@@ -18,15 +18,18 @@
  * @package WordPress
  */
 
+define('WP_MEMORY_LIMIT', '256M');
+
 switch ($_SERVER['HTTP_HOST'])
 {
 	case 'localhost/vintagememorabilia':
+	case 'vintagememorabilia.jz':		
 		define( 'DB_NAME', 'vintagememorabilia_db' );
 		define( 'DB_USER', 'root' );
-		define( 'DB_PASSWORD', '' );
-		define( 'DB_HOST', 'localhost' );
+		define( 'DB_PASSWORD', 'root' );
+		define( 'DB_HOST', 'localhost:8889' );
 		
-		break;
+	break;
 		
 	case 'vintagememorabilia.metricmedia.com':
 		define('DB_NAME', 'vintagememorabilia' );
@@ -69,6 +72,8 @@ switch ($_SERVER['HTTP_HOST'])
 		break;
 	
 }	
+
+// define('CURLOPT_SSL_VERIFYPEER', false);
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -118,7 +123,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 /* Add any custom values between this line and the "stop editing" line. */
 

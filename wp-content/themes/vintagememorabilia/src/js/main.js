@@ -68,21 +68,21 @@ var VMSite = {
 		}
 
 		// Get typeahead from cache if it exists and it's recent
-		if (VMSite.util.LocalStorage.get('cacheKey') !== VMSiteCacheKey || !VMSite.util.LocalStorage.get('typeahead') || VMSite.util.TimeElapsed({ time: VMSite.util.LocalStorage.get('typeahead.timestamp'), unit: 'm' }) > 10) {
-			$.get(vmSiteDir + 'ajax_calls.php?type=typeahead' + VMSite.params.ajaxNoCache)
-				.done(function (json) {
-					VMSite.util.LocalStorage.set('typeahead', {
-						items: json.Items,
-						timestamp: new Date().getTime(),
-					})
-					VMSite.typeahead()
-				})
-				.fail(function (jqXHR, textStatus, errorThrown) {
-					console.error('Error in AJAX request:', textStatus, errorThrown)
-				})
-		} else {
-			VMSite.typeahead()
-		}
+		// if (VMSite.util.LocalStorage.get('cacheKey') !== VMSiteCacheKey || !VMSite.util.LocalStorage.get('typeahead') || VMSite.util.TimeElapsed({ time: VMSite.util.LocalStorage.get('typeahead.timestamp'), unit: 'm' }) > 10) {
+		// 	$.get(vmSiteDir + 'ajax_calls.php?type=typeahead' + VMSite.params.ajaxNoCache)
+		// 		.done(function (json) {
+		// 			VMSite.util.LocalStorage.set('typeahead', {
+		// 				items: json.Items,
+		// 				timestamp: new Date().getTime(),
+		// 			})
+		// 			VMSite.typeahead()
+		// 		})
+		// 		.fail(function (jqXHR, textStatus, errorThrown) {
+		// 			console.error('Error in AJAX request:', textStatus, errorThrown)
+		// 		})
+		// } else {
+		// 	VMSite.typeahead()
+		// }
 
 		console.log('AJAX URL:', vmSiteDir + 'ajax_calls.php?type=typeahead' + VMSite.params.ajaxNoCache)
 
@@ -413,7 +413,7 @@ var VMSite = {
 	},
 	home: {
 		init: function () {
-			VMSite.masterslider.init()
+			// VMSite.masterslider.init()
 			// $('#VMSite')
 			// 	.on('click','.ms-showcase1 .ms-slide-info .ms-info',function(e){
 			// 		e.preventDefault();
