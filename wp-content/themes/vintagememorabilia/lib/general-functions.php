@@ -59,31 +59,32 @@ function get_page_title_custom() {
 
 /**
  * Elementor Pro's custom query filter hook to include a meta_query
- * for 
+ * for Special Note
  */
 add_action('elementor/query/special_note', function($query) {  
 	$query->set('meta_query', [  
-	  [  
-		'meta_key' => 'special_note', 
+		[  
+		'key' => 'special_note', 
 		'value' => '1', // 1 for true, 0 for false  
 		'compare' => '='  
-	  ]  
-	]);  
+		]  
+	]);
 });
 
 /**
  * Elementor Pro's custom query filter hook to include a meta_query
- * for 
+ * for Featured Item
  */
 add_action('elementor/query/featured_item', function($query) {  
 	$query->set('meta_query', [  
-	  [  
-		'meta_key' => 'featured_item', 
+		[  
+		'key' => 'featured_item', 
 		'value' => '1', // 1 for true, 0 for false  
 		'compare' => '='  
-	  ]  
-	]);  
+		]  
+	]);
 });
+  
   
 
 
