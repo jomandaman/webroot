@@ -9233,7 +9233,7 @@ body.Inventory-Item-Detail .action_button {
 .fancybox-close,
 .fancybox-prev span,
 .fancybox-next span {
-  background-image: url(fancybox/fancybox_sprite.png);
+  background-image: url(../css/fancybox/fancybox_sprite.png);
 }
 #fancybox-loading {
   position: fixed;
@@ -9249,7 +9249,7 @@ body.Inventory-Item-Detail .action_button {
 #fancybox-loading div {
   width: 44px;
   height: 44px;
-  background: url(fancybox/fancybox_loading.gif) center center no-repeat;
+  background: url(../css/fancybox/fancybox_loading.gif) center center no-repeat;
 }
 .fancybox-close {
   position: absolute;

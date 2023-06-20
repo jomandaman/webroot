@@ -423,6 +423,22 @@ var VMSite = {
 		},
 	},
 	inventory: {
+		heights: function (categorylinks) {
+			var device = VMSite.util.Device()
+			var $captions = categorylinks.find('.category-links-caption')
+			$captions.css({ height: 'auto' })
+			if (device.view.toLowerCase() !== 'mobile') {
+				var maxHeight = Math.max.apply(
+					Math,
+					$captions
+						.map(function () {
+							return $(this).height()
+						})
+						.get()
+				)
+				$captions.height(maxHeight)
+			}
+		},
 		init: function () {
 			var $inventory = VMSite.inventory
 			$('#VMSite').on('click', '.category-title', function (e) {
@@ -431,10 +447,12 @@ var VMSite = {
 			})
 		},
 		load: function (category) {
-			var $inventory = VMSite.inventory
+			var $gallery = VMSite.gallery
 			var categories = $('#VMSite').find('.category-items')
 			var title = category.find('.category-title')
 			var links = category.find('.category-links')
+			var termId = category.data('key') // Get the term ID from the data attribute
+
 			if (category.hasClass('on')) {
 				category.removeClass('on')
 				title.find('h4').removeClass('hidden')
@@ -444,6 +462,19 @@ var VMSite = {
 				category.addClass('on')
 				title.find('h4').addClass('hidden')
 				links.removeClass('hidden')
+				VMSite.util.Loader({ ele: links, color: '#444', size: '3' })
+
+				$.ajax({
+					url: '/wp-admin/admin-ajax.php',
+					data: {
+						action: 'load_items_by_term',
+						term_id: termId,
+					},
+					success: function (response) {
+						links.html(response)
+						$gallery.heights(links)
+					},
+				})
 			}
 		},
 	},
