@@ -347,14 +347,18 @@ add_action('admin_head', 'my_admin_styles');
 
 /* Menus: adding specific classes to top menu */
 function add_current_menu_class($classes, $item) {
-	// if viewing an "item" CPT, highlight Inventory page
-	if (is_singular('item')) { 
-        global $post;
-        if ($post->post_type === 'item') {
-            $classes[] = 'current-menu-item';
-        }
+    // Only add class to 'Inventory' menu item
+    if ($item->title !== 'Inventory') {
+        return $classes;
     }
+
+    // if viewing an "item" or "person" CPT, highlight Inventory page
+    if (is_singular('item') || is_singular('person')) { 
+        $classes[] = 'current-menu-item';
+    }
+
     return $classes;
 }
 add_filter('nav_menu_css_class', 'add_current_menu_class', 10, 2);
+
 ?>

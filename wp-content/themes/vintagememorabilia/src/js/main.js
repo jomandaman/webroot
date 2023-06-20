@@ -467,7 +467,7 @@ var VMSite = {
 				$.ajax({
 					url: '/wp-admin/admin-ajax.php',
 					data: {
-						action: 'load_items_by_term',
+						action: 'load_persons_by_term',
 						term_id: termId,
 					},
 					success: function (response) {
