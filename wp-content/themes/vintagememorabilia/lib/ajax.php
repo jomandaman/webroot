@@ -84,7 +84,7 @@ function load_persons_by_term() {
     );
     
     $query = new WP_Query($args);
-    $displayed_persons = array();
+    // $displayed_persons = array();
     $person_list = array();
     
     if ($query->have_posts()) {
@@ -130,7 +130,7 @@ function load_persons_by_term() {
         $html = '<div class="col-sm-12">Sorry, there are no Persons for this category</div>';
     }
 
-    header('Content-Type: text/html');
     echo $html;
+    wp_die(); // This is required to terminate immediately and return a proper response
 }
 

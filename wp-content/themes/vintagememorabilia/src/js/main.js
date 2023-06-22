@@ -472,7 +472,8 @@ var VMSite = {
 						term_id: termId,
 					},
 					success: function (response) {
-						links.html(response)
+						console.log(response);
+						links.html(response);
 						$inventory.heights(links)
 					},
 				})

@@ -16,9 +16,14 @@ class ItemAPI {
 
         // Get ACF data for this post
         $fields = get_fields($id);
+        $author_name = '';
 
         // Get the author's name
-        $author_name = get_field('main_person', $id);
+        $persons = wp_get_post_terms($id, 'person');
+        if (!empty($persons)) {
+            $person = $persons[0];
+            $author_name = esc_html($person->name);
+        }
 
         $categories = ItemAPI::get_item_categories($id);
 
