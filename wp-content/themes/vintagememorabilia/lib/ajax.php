@@ -51,7 +51,6 @@ function load_items_by_term() {
 
     header('Content-Type: text/html');
     echo $html;
-    exit;
 }
 
 add_action("wp_ajax_load_persons_by_term", "load_persons_by_term");
@@ -133,6 +132,5 @@ function load_persons_by_term() {
 
     header('Content-Type: text/html');
     echo $html;
-    exit;
 }
 

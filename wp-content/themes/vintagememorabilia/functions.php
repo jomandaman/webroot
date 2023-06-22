@@ -20,6 +20,7 @@ include('lib/ajax.php');
 
 // Item CPT API
 include('api/api.item.inc.php');
+include('api/api.person.inc.php');
 
 // Search related
 include('lib/search.php');

@@ -39,28 +39,25 @@ Template Name: Inventory and Gallery
 
                         // Display every category
                         echo "<div class='category-items clearfix' data-index='{$index}' data-key='{$category_slug}' data-type='gallery'>
-                                    <div class='category-title'>
-                                        <h3 title='{$category_slug}'>
-                                            {$category_name}
-                                            <span class='pull-right expand'><span class='togglelabel'>Expand </span><i
-                                                    class='fa fa-caret-down'></i></span> <span class='pull-right collapse'><span
-                                                    class='togglelabel'>Close </span><i class='fa fa-caret-up'></i></span>
-                                        </h3>
-                                        <h4>{$category_description}</h4>
-                                    </div>
-                                    <div class='category-links hidden'>
-                                        <div class='category-links-columns'>";
+                                <div class='category-title'>
+                                    <h3 title='{$category_slug}'>
+                                        {$category_name}
+                                        <span class='pull-right expand'><span class='togglelabel'>Expand </span><i
+                                                class='fa fa-caret-down'></i></span> <span class='pull-right collapse'><span
+                                                class='togglelabel'>Close </span><i class='fa fa-caret-up'></i></span>
+                                    </h3>
+                                    <h4>{$category_description}</h4>
+                                </div>
+                                <div class='category-links hidden'>";
 
-                        if ($is_gallery_page) {
-                            // Loaded via js
+                                if ($is_inventory_page) {
+                                    echo "<div class='category-links-columns'>";
+                                    // Loaded via js
+                                    echo "</div>";                          
+                                }
 
-                        } else { // assume inventory
-                            // Loaded via js                          
-                        }
-
-                        echo "      </div>
-                                    </div>
-                                </div>";
+                         echo   "</div>
+                             </div>";
                     }
                 ?>
             </div>

@@ -89,9 +89,14 @@
             <div class="row">
               <div class="col-xs-5">
                 <h4 class="price">
-                  $ <?php if (get_field('price')): ?>
-                      <?php the_field('price'); ?>
-                    <?php endif; ?>
+                  <?php 
+                    $is_sold = get_field('sold');
+                    if ($is_sold) {
+                      echo "<span style='color:red;'>SOLD</span>";
+                    } else {
+                      echo "\${$item_price}";
+                    }
+                  ?>
                 </h4>
               </div>
               <?php if (get_field('itemNum')): ?>

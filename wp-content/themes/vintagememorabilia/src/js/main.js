@@ -447,22 +447,23 @@ var VMSite = {
 			})
 		},
 		load: function (category) {
-			var $gallery = VMSite.gallery
-			var categories = $('#VMSite').find('.category-items')
-			var title = category.find('.category-title')
-			var links = category.find('.category-links')
 			var termId = category.data('key') // Get the term ID from the data attribute
-
+			var $inventory = VMSite.inventory;
+			var categories = $('#VMSite').find('.category-items');
+			var title = category.find('.category-title');
+			var linksContainer = category.find('.category-links');
+			var links = category.find('.category-links-columns');
 			if (category.hasClass('on')) {
-				category.removeClass('on')
-				title.find('h4').removeClass('hidden')
-				links.addClass('hidden')
+				category.removeClass('on');
+				title.find('h4').removeClass('hidden');
+				linksContainer.addClass('hidden');
 			} else {
-				categories.removeClass('on').find('.category-title h4').removeClass('hidden').end().find('.category-links').addClass('hidden').end()
-				category.addClass('on')
-				title.find('h4').addClass('hidden')
-				links.removeClass('hidden')
-				VMSite.util.Loader({ ele: links, color: '#444', size: '3' })
+				categories.removeClass('on')
+					.find('.category-title h4').removeClass('hidden').end()
+					.find('.category-links').addClass('hidden').end();
+				category.addClass('on');
+				title.find('h4').addClass('hidden');
+				linksContainer.removeClass('hidden');
 
 				$.ajax({
 					url: '/wp-admin/admin-ajax.php',
@@ -472,7 +473,7 @@ var VMSite = {
 					},
 					success: function (response) {
 						links.html(response)
-						$gallery.heights(links)
+						$inventory.heights(links)
 					},
 				})
 			}

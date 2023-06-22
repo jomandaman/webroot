@@ -14,6 +14,9 @@ function custom_login_logo() {
 	background-image: url('<?php echo get_template_directory_uri(); ?>/images/logo.png');
 	background-size: contain;
 }
+body {
+    background: #131313;
+}
 </style>
 <?php
 }
