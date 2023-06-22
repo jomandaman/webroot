@@ -17,6 +17,9 @@ class ItemAPI {
         // Get ACF data for this post
         $fields = get_fields($id);
 
+        // Get the author's name
+        $author_name = get_field('main_person', $id);
+
         $categories = ItemAPI::get_item_categories($id);
 
         $primary_category = null;
@@ -33,6 +36,7 @@ class ItemAPI {
             'year' => get_field('year', $id),
             'categories' => $categories,
             'primary_category' => $primary_category,
+            'author_name' => $author_name,
             'link' => get_the_permalink($id),
         ), $fields);
 
@@ -76,6 +80,7 @@ class ItemAPI {
         $category = $item['primary_category'];
         $title = $item['title'];
         $background_image = '';
+        $author_name = $item['author_name'];
         
         if( !empty($item['images'][0]['url']) ) {
             $background_image = $item['images'][0]['url'];
