@@ -49,8 +49,8 @@ function load_items_by_term() {
         $html = '<div class="col-sm-12">Sorry, there are no gallery items for this category</div>';
     }
 
-    header('Content-Type: text/html');
     echo $html;
+    wp_die(); // This is required to terminate immediately and return a proper response
 }
 
 add_action("wp_ajax_load_persons_by_term", "load_persons_by_term");

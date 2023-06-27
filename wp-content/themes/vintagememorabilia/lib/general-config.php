@@ -9,10 +9,17 @@ function custom_login_logo() {
 ?>
 <style type="text/css">
 #login h1 a { 
-	width: 100%;
-	height: 81px;
+    height: 100px;
 	background-image: url('<?php echo get_template_directory_uri(); ?>/images/logo.png');
 	background-size: contain;
+    position: absolute;
+    left: 50%; /* This centers the a tag horizontally */
+    transform: translateX(-50%); /* This corrects the centering by shifting the a tag to the left by half its width */
+    width: 130%; /* This makes the a tag larger than the h1 tag */
+}
+#login h1 {
+    position: relative;
+    height: 100px;
 }
 body {
     background: #131313;
