@@ -159,6 +159,43 @@ function mm_disable_gutenberg( $can_edit, $post_type ) {
 add_filter( 'gutenberg_can_edit_post_type', 'mm_disable_gutenberg', 10, 2 );
 add_filter( 'use_block_editor_for_post_type', 'mm_disable_gutenberg', 10, 2 );
 
+function get_post_meta_ajax_handler() {
+    // Check the nonce - security first!
+    check_ajax_referer('get_post_meta_nonce', 'security');
+
+    // Get the post ID and field names from the AJAX request
+    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+    $meta_keys = isset($_POST['meta_keys']) ? (array) $_POST['meta_keys'] : array();
+
+    // Prepare an array for the results
+    $result = array();
+
+    // Get the field value for each field name
+    foreach ($meta_keys as $meta_key) {
+        $result[$meta_key] = get_field($meta_key, $post_id);
+    }
+
+    // Return the results as a JSON object
+    wp_send_json($result);
+}
+add_action('wp_ajax_get_post_meta', 'get_post_meta_ajax_handler');
+
+/* Menus: adding specific classes to top menu */
+function add_current_menu_class($classes, $item) {
+    // Only add class to 'Inventory' menu item
+    if ($item->title !== 'Inventory') {
+        return $classes;
+    }
+
+    // if viewing an "item" or "person" CPT, highlight Inventory page
+    if (is_singular('item') || is_singular('person')) { 
+        $classes[] = 'current-menu-item';
+    }
+
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_current_menu_class', 10, 2);
+
 /**
  * Adding Special Note and Featured Item checkboxes to Item listing editor
  */
@@ -243,27 +280,6 @@ function display_quick_edit_custom($column_name, $post_type) {
 }
 add_action('quick_edit_custom_box', 'display_quick_edit_custom', 10, 2);
 
-function get_post_meta_ajax_handler() {
-    // Check the nonce - security first!
-    check_ajax_referer('get_post_meta_nonce', 'security');
-
-    // Get the post ID and field names from the AJAX request
-    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
-    $meta_keys = isset($_POST['meta_keys']) ? (array) $_POST['meta_keys'] : array();
-
-    // Prepare an array for the results
-    $result = array();
-
-    // Get the field value for each field name
-    foreach ($meta_keys as $meta_key) {
-        $result[$meta_key] = get_field($meta_key, $post_id);
-    }
-
-    // Return the results as a JSON object
-    wp_send_json($result);
-}
-add_action('wp_ajax_get_post_meta', 'get_post_meta_ajax_handler');
-
 
 // Populate the select field in Quick Edit
 function populate_quick_edit_custom() {
@@ -286,9 +302,13 @@ function populate_quick_edit_custom() {
                         security: '<?php echo wp_create_nonce("get_post_meta_nonce"); ?>'
                     },
                     success: function(response) {
+                        console.log(response); // Log the response to the console
                         $('#main_person_quick_edit').val(response['main_person']);
                         $('#special_note_quick_edit').prop('checked', response['special_note'] === '1');
                         $('#featured_item_quick_edit').prop('checked', response['featured_item'] === '1');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown); // Log any errors to the console
                     }
                 });
             });
@@ -299,6 +319,10 @@ function populate_quick_edit_custom() {
 add_action('admin_print_footer_scripts-edit.php', 'populate_quick_edit_custom');
 
 
+
+
+
+
 // Save the new values from quick edit
 function save_quick_edit_custom($post_id) {
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
@@ -307,21 +331,26 @@ function save_quick_edit_custom($post_id) {
     if (!current_user_can('edit_post', $post_id)) {
         return;
     }
+    if (!(defined('DOING_AJAX') && DOING_AJAX)) {
+        return;
+    }
     if (isset($_POST['main_person'])) {
         update_post_meta($post_id, 'main_person', $_POST['main_person']);
     }
-    if (isset($_REQUEST['special_note'])) {
+    if (isset($_REQUEST['special_note']) && $_REQUEST['special_note'] === 'on') {
         update_post_meta($post_id, 'special_note', true);
     } else {
-        delete_post_meta($post_id, 'special_note');
+        update_post_meta($post_id, 'special_note', false);
     }
-    if (isset($_REQUEST['featured_item'])) {
+    if (isset($_REQUEST['featured_item']) && $_REQUEST['featured_item'] === 'on') {
         update_post_meta($post_id, 'featured_item', true);
     } else {
-        delete_post_meta($post_id, 'featured_item');
+        update_post_meta($post_id, 'featured_item', false);
     }
 }
 add_action('save_post', 'save_quick_edit_custom');
+
+
 
 
 /**
@@ -352,23 +381,5 @@ function my_admin_styles() {
 }
 add_action('admin_head', 'my_admin_styles');
 
-
-
-
-/* Menus: adding specific classes to top menu */
-function add_current_menu_class($classes, $item) {
-    // Only add class to 'Inventory' menu item
-    if ($item->title !== 'Inventory') {
-        return $classes;
-    }
-
-    // if viewing an "item" or "person" CPT, highlight Inventory page
-    if (is_singular('item') || is_singular('person')) { 
-        $classes[] = 'current-menu-item';
-    }
-
-    return $classes;
-}
-add_filter('nav_menu_css_class', 'add_current_menu_class', 10, 2);
 
 ?>

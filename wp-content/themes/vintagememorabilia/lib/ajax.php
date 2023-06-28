@@ -84,7 +84,7 @@ function load_persons_by_term() {
     );
     
     $query = new WP_Query($args);
-    // $displayed_persons = array();
+    $displayed_persons = array();
     $person_list = array();
     
     if ($query->have_posts()) {
@@ -98,8 +98,15 @@ function load_persons_by_term() {
                 $all_persons = array_merge($all_persons, $person_terms);
             }
             if ($related_persons) {
-                $all_persons = array_merge($all_persons, $related_persons);
-            }
+                if (is_array($related_persons)) {
+                    $all_persons = array_merge($all_persons, $related_persons);
+                } else {
+                    $person_object = get_term_by('name', $related_persons, 'person');
+                    if ($person_object) {
+                        array_push($all_persons, $person_object);
+                    }
+                }
+            }                       
         
             foreach ($all_persons as $person) {
                 if (!in_array($person->term_id, $displayed_persons)) {

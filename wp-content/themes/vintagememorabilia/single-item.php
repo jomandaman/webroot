@@ -94,6 +94,7 @@
                     if ($is_sold) {
                       echo "<span style='color:red;'>SOLD</span>";
                     } else {
+                      $item_price = get_field('price');
                       echo "\${$item_price}";
                     }
                   ?>
