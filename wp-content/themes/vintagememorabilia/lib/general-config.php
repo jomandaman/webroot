@@ -159,26 +159,6 @@ function mm_disable_gutenberg( $can_edit, $post_type ) {
 add_filter( 'gutenberg_can_edit_post_type', 'mm_disable_gutenberg', 10, 2 );
 add_filter( 'use_block_editor_for_post_type', 'mm_disable_gutenberg', 10, 2 );
 
-function get_post_meta_ajax_handler() {
-    // Check the nonce - security first!
-    check_ajax_referer('get_post_meta_nonce', 'security');
-
-    // Get the post ID and field names from the AJAX request
-    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
-    $meta_keys = isset($_POST['meta_keys']) ? (array) $_POST['meta_keys'] : array();
-
-    // Prepare an array for the results
-    $result = array();
-
-    // Get the field value for each field name
-    foreach ($meta_keys as $meta_key) {
-        $result[$meta_key] = get_field($meta_key, $post_id);
-    }
-
-    // Return the results as a JSON object
-    wp_send_json($result);
-}
-add_action('wp_ajax_get_post_meta', 'get_post_meta_ajax_handler');
 
 /* Menus: adding specific classes to top menu */
 function add_current_menu_class($classes, $item) {
@@ -195,6 +175,37 @@ function add_current_menu_class($classes, $item) {
     return $classes;
 }
 add_filter('nav_menu_css_class', 'add_current_menu_class', 10, 2);
+
+
+// logging
+function get_post_meta_ajax_handler() {
+    // Check the nonce - security first!
+    check_ajax_referer('get_post_meta_nonce', 'security');
+
+    // Get the post ID and field names from the AJAX request
+    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+    $meta_keys = isset($_POST['meta_keys']) ? (array) $_POST['meta_keys'] : array();
+
+    // Log the received post ID
+    error_log("Received post ID: " . $post_id);
+
+    // Prepare an array for the results
+    $result = array();
+
+    // Get the field value for each field name
+    foreach ($meta_keys as $meta_key) {
+        $value = get_field($meta_key, $post_id);
+
+        // Log the field name and value
+        error_log("Field: " . $meta_key . ", Value: " . var_export($value, true));
+
+        $result[$meta_key] = $value;
+    }
+
+    // Return the results as a JSON object
+    wp_send_json($result);
+}
+add_action('wp_ajax_get_post_meta', 'get_post_meta_ajax_handler');
 
 /**
  * Adding Special Note and Featured Item checkboxes to Item listing editor
@@ -288,8 +299,7 @@ function populate_quick_edit_custom() {
         jQuery(document).ready(function($) {
             // Hook into the 'click' event for the Quick Edit button
             $('.editinline').on('click', function() {
-                var inline_data = inlineEditPost.edit(this);
-                var post_id = inline_data['id'];
+                var post_id = $(this).closest('tr').attr('id').replace('post-', '');
 
                 // Use AJAX to get the post meta
                 $.ajax({
@@ -303,9 +313,21 @@ function populate_quick_edit_custom() {
                     },
                     success: function(response) {
                         console.log(response); // Log the response to the console
-                        $('#main_person_quick_edit').val(response['main_person']);
-                        $('#special_note_quick_edit').prop('checked', response['special_note'] === '1');
-                        $('#featured_item_quick_edit').prop('checked', response['featured_item'] === '1');
+                        console.log('special_note comparison result:', response['special_note'] === true);
+                        console.log('featured_item comparison result:', response['featured_item'] === true);
+                        if (response['special_note'] === true) {
+                        $('#special_note').attr('checked', 'checked');
+                        } else {
+                            $('#special_note').removeAttr('checked');
+                        }
+
+                        if (response['featured_item'] === true) {
+                            $('#featured_item').attr('checked', 'checked');
+                        } else {
+                            $('#featured_item').removeAttr('checked');
+                        }
+
+
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log(textStatus, errorThrown); // Log any errors to the console
@@ -317,9 +339,6 @@ function populate_quick_edit_custom() {
     <?php
 }
 add_action('admin_print_footer_scripts-edit.php', 'populate_quick_edit_custom');
-
-
-
 
 
 
