@@ -312,23 +312,25 @@ function populate_quick_edit_custom() {
                         security: '<?php echo wp_create_nonce("get_post_meta_nonce"); ?>'
                     },
                     success: function(response) {
-                        console.log(response); // Log the response to the console
-                        console.log('special_note comparison result:', response['special_note'] === true);
-                        console.log('featured_item comparison result:', response['featured_item'] === true);
-                        if (response['special_note'] === true) {
-                        $('#special_note').attr('checked', 'checked');
-                        } else {
-                            $('#special_note').removeAttr('checked');
-                        }
+                        var special_note = (response['special_note'] === true || response['special_note'] === 1);
+                        var featured_item = (response['featured_item'] === true || response['featured_item'] === 1);
 
-                        if (response['featured_item'] === true) {
-                            $('#featured_item').attr('checked', 'checked');
-                        } else {
-                            $('#featured_item').removeAttr('checked');
-                        }
+                        // Delay the execution of the code that sets the checkbox values
+                        setTimeout(function() {
+                            if (special_note) {
+                                $('#special_note').prop('checked', true);
+                            } else {
+                                $('#special_note').prop('checked', false);
+                            }
 
-
+                            if (featured_item) {
+                                $('#featured_item').prop('checked', true);
+                            } else {
+                                $('#featured_item').prop('checked', false);
+                            }
+                        }, 500);  // Delay of 500 milliseconds
                     },
+
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.log(textStatus, errorThrown); // Log any errors to the console
                     }

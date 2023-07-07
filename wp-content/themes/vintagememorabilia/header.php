@@ -76,14 +76,13 @@ if (is_front_page()) {
         </div>
       </div>
       <div class="col-sm-4 hidden-xs">
-        <div class="input-group nav-search">
-			<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
-			  <input aria-label="Search" class="form-control" name="s" placeholder="Search" rel="sitesearch2" type="text" value="<?php the_search_query(); ?>" />			 
-			</form>   
-			  <span class="input-group-addon sitesearch-submit" rel="sitesearch2">
-				<i class="fa fa-search">
-				</i>
-			  </span>
+        <div class="input-group nav-search">					
+          <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+            <input aria-label="Search" class="form-control" name="s" placeholder="Search" type="text" value="<?php the_search_query(); ?>" />	
+            <span class="input-group-addon sitesearch-submit">
+                <i class="fa fa-search"></i>
+            </span>
+          </form>
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ $search_query = get_search_query();
 						
 						<?php while ( have_posts() ) : the_post();  ?>				
 						
-							 <div class="home-items-column" style="margin-bottom:5px;">
+							 <div class="home-items-column" style="margin-bottom:20px;">
 								<div class="row">
 									<div class="col-sm-3">
 										<?php if(has_post_thumbnail()) : ?>
@@ -47,7 +47,7 @@ $search_query = get_search_query();
 							<div class="col-sm-4">
 								<input type="hidden" name="view" value="search">
 								<span rel="category">Keyword or phrase:</span>
-								<input type="text" name="s" value="<?php the_search_query(); ?>" class="form-control">
+								<input type="text" style="margin-top:10px" name="s" value="<?php the_search_query(); ?>" class="form-control">
 							</div>
 							<div class="col-sm-4">								
 							</div>
@@ -55,7 +55,7 @@ $search_query = get_search_query();
 							</div>
 							<div class="col-sm-4">
 								<br>
-								<input name="submit" type="submit" value="Search" class="btn btn-block submit">						
+								<input name="submit" style="margin-bottom:10px" type="submit" value="Search" class="btn btn-block submit">						
 							</div>
 							</form>
 						</div>

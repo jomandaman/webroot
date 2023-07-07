@@ -17,7 +17,7 @@ Template Name: Inventory and Gallery
                     if ($is_inventory_page) {
                         echo "<h3 class='pagetitle'>INVENTORY BY CATEGORY &amp; NAME</h3>";
                     } elseif ($is_gallery_page) {
-                        echo "<h3 class='pagetitle'>GALLERY Testing</h3>";
+                        echo "<h3 class='pagetitle'>GALLERY</h3>";
                     }
 
                     $categories = get_terms(array(

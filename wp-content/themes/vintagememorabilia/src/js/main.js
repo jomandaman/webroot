@@ -821,10 +821,10 @@ var VMSite = {
 				.on('click', '.sitesearch-submit', function (e) {
 					e.preventDefault()
 					$(this).blur()
-					var field = $('.nav-search input[name="sitesearch"][rel="' + $(this).attr('rel') + '"]')
-					var path = vmRootDir + 'index.cfm/view/search/term/' + field.val().replace(/\s/gi, '%20') + '/category/All%20Categories/' + (window.location.pathname.indexOf('vmNoCache/1') > -1 ? 'vmNoCache/1/' : '')
-					window.open(path, '_top')
-				})
+					var field = $('.nav-search input[name="s"]')
+					var path = field.closest('form').attr('action') + '?s=' + encodeURIComponent(field.val())
+					window.location.href = path
+				})				
 		},
 		fixed: function () {
 			// Initial fixed navbar switcher
