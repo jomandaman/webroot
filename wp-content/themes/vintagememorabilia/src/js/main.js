@@ -818,13 +818,13 @@ var VMSite = {
 						$('.nav-search .sitesearch-submit[rel="' + $(this).attr('rel') + '"]').trigger('click')
 					}
 				})
-				.on('click', '.sitesearch-submit', function (e) {
+				$('.sitesearch-submit').on('click', function (e) {
 					e.preventDefault()
-					$(this).blur()
-					var field = $('.nav-search input[name="s"]')
-					var path = field.closest('form').attr('action') + '?s=' + encodeURIComponent(field.val())
-					window.location.href = path
-				})				
+					var targetId = $(this).data('target')
+					var field = $('#' + targetId)
+					var path = field.val().replace(/\s/gi, '%20')
+					window.location.href = "?s=" + path
+				})	
 		},
 		fixed: function () {
 			// Initial fixed navbar switcher

@@ -55,13 +55,12 @@ if (is_front_page()) {
                   <img alt="Vintage Memorabilia - Fine Autographs Of Interest &amp; Distinction" src="<?php echo get_template_directory_uri() ?>/images/logo-only.png" />
                 </a>
               </span>
-			  <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
-				  <input aria-label="Search" class="form-control" name="s" placeholder="Search" rel="sitesearch1" type="text" value="<?php the_search_query(); ?>" />
-			  </form>  
-			  <span class="input-group-addon sitesearch-submit" rel="sitesearch1">
-				<i class="fa fa-search">
-				</i>
-			  </span>			 
+              <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+                <input aria-label="Search" class="form-control search-input" name="s" placeholder="Search" id="sitesearch1" type="text" value="<?php the_search_query(); ?>" />
+              </form>
+              <span class="input-group-addon sitesearch-submit" data-target="sitesearch1">
+                <i class="fa fa-search"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -76,14 +75,14 @@ if (is_front_page()) {
         </div>
       </div>
       <div class="col-sm-4 hidden-xs">
-        <div class="input-group nav-search">					
-          <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
-            <input aria-label="Search" class="form-control" name="s" placeholder="Search" type="text" value="<?php the_search_query(); ?>" />	
-            <span class="input-group-addon sitesearch-submit">
-                <i class="fa fa-search"></i>
-            </span>
-          </form>
-        </div>
+      <div class="input-group nav-search">					
+        <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+          <input aria-label="Search" class="form-control search-input" name="s" placeholder="Search" id="sitesearch2" type="text" value="<?php the_search_query(); ?>" />
+        </form>
+        <span class="input-group-addon sitesearch-submit" data-target="sitesearch2">
+          <i class="fa fa-search"></i>
+        </span>			  
+      </div>
       </div>
     </div>
 
@@ -108,13 +107,12 @@ if (is_front_page()) {
           </button>
           <div class="navbar-brand visible-xs">
             <div class="input-group nav-search">
-			  <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
-			    <input aria-label="Search" class="form-control" name="s" placeholder="Search" rel="sitesearch3" type="text" value="<?php the_search_query(); ?>" />
-			  </form>
-			  <span class="input-group-addon sitesearch-submit" rel="sitesearch3">
-				<i class="fa fa-search">
-				</i>
-			  </span>				  
+              <form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+                <input aria-label="Search" class="form-control search-input" name="s" placeholder="Search" id="sitesearch3" type="text" value="<?php the_search_query(); ?>" />
+              </form>
+              <span class="input-group-addon sitesearch-submit" data-target="sitesearch3">
+                <i class="fa fa-search"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -128,7 +126,6 @@ if (is_front_page()) {
                 // 'walker' => new My_Walker_Nav_Menu()
             ) );            
             ?>
-            <!-- Had 'colorSwitch border active' as class for active, need to figure out  -->
           </ul>
         </div>
       </div>
