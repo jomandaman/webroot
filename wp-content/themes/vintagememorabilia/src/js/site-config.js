@@ -2,11 +2,11 @@
 /// SET UP PATH VARIABLES
 */
 
-vmRootDir = '/vintagememorabilia/';
-vmAdminDir = '/vintagememorabilia/wp_admin/';
-vmAssetsDir = '/vintagememorabilia/wp-content/themes/vintagememorabilia/images/';
-vmSiteDir = '/vintagememorabilia/wp-content/themes/vintagememorabilia/';
-vmUploadDir = '/vintagememorabilia/wp-content/uploads';
+vmRootDir = '/';
+vmAdminDir = '/vm_admin/';
+vmAssetsDir = '/wp-content/themes/vintagememorabilia/images/';
+vmSiteDir = '/wp-content/themes/vintagememorabilia/';
+vmUploadDir = '/wp-content/uploads';
 
 ///LIGHTBOX VARIABLES
 var LBfileLoadingImage = vmAssetsDir + "lightbox/loading.gif";

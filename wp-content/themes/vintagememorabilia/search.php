@@ -17,7 +17,7 @@ $search_query = get_search_query();
                     <div class="pad content-left">
 						<h2>Search Results</h2>
 						
-						<p>Your search for pages with all of the words "<?php echo $search_query; ?>" returned <?php echo $wp_query->found_posts; ?> result(s).<p>
+						<p style="margin-bottom:20px">Your search for pages with all of the words "<?php echo $search_query; ?>" returned <?php echo $wp_query->found_posts; ?> result(s).<p>
 						
 						<?php while ( have_posts() ) : the_post();  ?>				
 						
@@ -29,8 +29,18 @@ $search_query = get_search_query();
 										<?php endif; ?>
 									</div>
 									<div class="col-sm-9">
-										<h4><a href="<?php echo get_permalink(); ?>" class=""><?php the_title() ?></a></h4>
-										<p><?php the_excerpt(); ?></p>
+										<h4>
+											<a href="<?php echo get_permalink(); ?>" class="">
+												<?php 
+													$main_person = get_field('main_person');
+													if (!empty($main_person)) {
+														echo '<strong>' . $main_person->name . ' - </strong>';
+													}
+												?>
+												<?php the_title() ?>
+											</a>
+										</h4>
+										<p><?php echo wp_trim_words( get_the_excerpt(), 30, '...' ); ?></p>
 									</div>
 								</div>
 							</div>

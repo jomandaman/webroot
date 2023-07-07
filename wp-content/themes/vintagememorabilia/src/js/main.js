@@ -67,25 +67,6 @@ var VMSite = {
 			VMSite.refer.init()
 		}
 
-		// Get typeahead from cache if it exists and it's recent
-		// if (VMSite.util.LocalStorage.get('cacheKey') !== VMSiteCacheKey || !VMSite.util.LocalStorage.get('typeahead') || VMSite.util.TimeElapsed({ time: VMSite.util.LocalStorage.get('typeahead.timestamp'), unit: 'm' }) > 10) {
-		// 	$.get(vmSiteDir + 'ajax_calls.php?type=typeahead' + VMSite.params.ajaxNoCache)
-		// 		.done(function (json) {
-		// 			VMSite.util.LocalStorage.set('typeahead', {
-		// 				items: json.Items,
-		// 				timestamp: new Date().getTime(),
-		// 			})
-		// 			VMSite.typeahead()
-		// 		})
-		// 		.fail(function (jqXHR, textStatus, errorThrown) {
-		// 			console.error('Error in AJAX request:', textStatus, errorThrown)
-		// 		})
-		// } else {
-		// 	VMSite.typeahead()
-		// }
-
-		console.log('AJAX URL:', vmSiteDir + 'ajax_calls.php?type=typeahead' + VMSite.params.ajaxNoCache)
-
 		// Set localStorage cache key
 		VMSite.util.LocalStorage.set('cacheKey', VMSiteCacheKey)
 
@@ -521,6 +502,7 @@ var VMSite = {
 								.css({ width: '100%', height: '300px', background: 'url(' + src.replace('thumbsm', 'thumblg') + ') center center no-repeat' })
 							MagicZoom.refresh(this)
 							$('body .mz-zoom-window').css({ zIndex: 99900 })
+							console.log(vmSiteDir + 'images/pages/blank_900.png');
 						})
 
 					// Insert desktop preview images

@@ -100,4 +100,29 @@ class ItemAPI {
         // Dump the output
         return ob_get_clean();
     }
+
+    /**
+     * Renders search suggestions for a given query
+     * @param string $query
+     */
+    function get_search_suggestions($query) {
+        $args = array(
+            's' => $query,
+            'post_type' => 'item',
+            'posts_per_page' => 10, // Limit the number of suggestions
+        );
+    
+        $posts = get_posts($args);
+    
+        $suggestions = array();
+        foreach ($posts as $post) {
+            $suggestions[] = array(
+                'id' => $post->ID,
+                'title' => $post->post_title,
+                'thumbnail' => get_the_post_thumbnail_url($post->ID),
+            );
+        }
+    
+        return $suggestions;
+    }    
 }

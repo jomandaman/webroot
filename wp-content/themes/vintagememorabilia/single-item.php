@@ -159,7 +159,7 @@
             </div>
             <div class="visible-sm visible-md visible-lg">
               <div class="hidden" id="detailZoom">
-                <div class="linkContainer" data-title="Barack Obama: Signed Book: Dreams From My Father">
+                <div class="linkContainer" data-title="<?php the_title(); ?>">
                   <div class="close-zoom">
                     <a href="#">
                       <i class="fa fa-times-circle">
